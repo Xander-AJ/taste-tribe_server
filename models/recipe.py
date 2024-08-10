@@ -1,6 +1,6 @@
 from app import db
 from datetime import datetime
-
+from sqlalchemy.dialects.sqlite import JSON
 
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,9 +14,8 @@ class Recipe(db.Model):
         db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
     )
 
-    ingredients = db.relationship(
-        "Ingredient", backref="recipe", lazy="dynamic", cascade="all, delete-orphan"
-    )
+    ingredients = db.Column(JSON, nullable=False)  # Store ingredients as a JSON object
+
     comments = db.relationship(
         "Comment", backref="recipe", lazy="dynamic", cascade="all, delete-orphan"
     )
