@@ -5,7 +5,6 @@ db = SQLAlchemy()
 from .user import User
 from .profile import Profile
 from .recipe import Recipe
-from .ingredient import Ingredient
 from .comment import Comment
 from .rating import Rating
 from .bookmark import Bookmark
